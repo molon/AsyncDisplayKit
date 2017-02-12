@@ -9,10 +9,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AsyncDisplayKit/ASRangeController.h>
-#import <AsyncDisplayKit/ASTableViewProtocols.h>
+
 #import <AsyncDisplayKit/ASBaseDefines.h>
-#import <AsyncDisplayKit/ASBatchContext.h>
+#import <AsyncDisplayKit/ASLayoutController.h>
+#import <AsyncDisplayKit/ASLayoutRangeType.h>
+#import <AsyncDisplayKit/ASTableViewProtocols.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -59,9 +60,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) CGFloat leadingScreensForBatching;
 
+/*
+ * A Boolean value that determines whether the nodes that the data source renders will be flipped.
+ */
+@property (nonatomic, assign) BOOL inverted;
+
 @end
 
 @interface ASTableView (Deprecated)
+
+@property (nonatomic, weak) id<UITableViewDelegate> delegate ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode.delegate instead. If you REALLY want to use this, cast to UITableView but don't rely on the return value.");
+@property (nonatomic, weak) id<UITableViewDataSource> dataSource ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode.dataSource instead. If you REALLY want to use this, cast to UITableView but don't rely on the return value.");
 
 @property (nonatomic, weak) id<ASTableDelegate>   asyncDelegate ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode's .delegate property instead.");
 @property (nonatomic, weak) id<ASTableDataSource> asyncDataSource ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode .dataSource property instead.");
